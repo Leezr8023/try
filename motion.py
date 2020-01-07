@@ -61,8 +61,12 @@ def startmeasure():
 
     sr.close()
     xps.close()
+    # print(data)
     num = np.loadtxt('count.txt')
     title = "data/data{0}.txt".format(num)
     np.savetxt(title, data, fmt='%f', delimiter='\t')
     np.savetxt("count.txt",[num+1])
-    exitFlag = 1
+    global exitFlag
+    exitFlag[0] = 1
+    print("shebei:")
+    print(exitFlag[0])
