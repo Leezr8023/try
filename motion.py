@@ -2,7 +2,7 @@ import SR830
 import XPS
 import numpy as np
 from const import START_POSITION,FINISH_ONCE,\
-    SECEND_START,SECEND_FINISH,SIGNAL,data
+    SECEND_START,SECEND_FINISH,SIGNAL,data,STEP,exitFlag
 
 
 def startmeasure():
@@ -22,7 +22,6 @@ def startmeasure():
             sum = sum + res
         data[i, 0] = sum/6
         data[i, 1] = postion
-        SIGNAL = 1
 
     xps.measureMove(SECEND_START)
     for i in range(100, 200):
@@ -31,11 +30,10 @@ def startmeasure():
         sum = 0.0
         for k in range(6):
             res = sr.getOut(3)
-            print(res)
+            # print(res)
             sum = sum + res
         data[i, 0] = sum/6
         data[i, 1] = postion
-        SIGNAL = 1
 
     xps.measureMove(SECEND_FINISH)
     for i in range(200,300):
@@ -44,11 +42,10 @@ def startmeasure():
         sum = 0.0
         for k in range(6):
             res = sr.getOut(3)
-            print(res)
+            # print(res)
             sum = sum + res
         data[i, 0] = sum/6
         data[i, 1] = postion
-        SIGNAL = 1
 
     xps.measureMove(FINISH_ONCE)
     for i in range(300,400):
@@ -57,11 +54,10 @@ def startmeasure():
         sum = 0.0
         for k in range(6):
             res = sr.getOut(3)
-            print(res)
+            # print(res)
             sum = sum + res
         data[i, 0] = sum/6
         data[i, 1] = postion
-        SIGNAL = 1
 
     sr.close()
     xps.close()
@@ -69,3 +65,4 @@ def startmeasure():
     title = "data/data{0}.txt".format(num)
     np.savetxt(title, data, fmt='%f', delimiter='\t')
     np.savetxt("count.txt",[num+1])
+    exitFlag = 1

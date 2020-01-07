@@ -27,7 +27,7 @@ class MyXPS:
     def measureMove(self,move):
         move_double = array.array('d', [move])
         xps.GroupMoveAbsolute('Group1', move_double, 1, '')
-        #time.sleep(4)
+        time.sleep(0.1)
     def GetPosition(self):
         result,postion,errstring = xps.GroupPositionCurrentGet('Group1','',1,'')
         if result == 0 :

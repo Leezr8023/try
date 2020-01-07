@@ -9,7 +9,7 @@ SECEND_FINISH = 10.1
 STEP = 0.001# 0.00001  10nm
 
 # 画图信号
-SIGNAL = 0
+SIGNAL = 1
 # 线程退出信号
 exitFlag = 0
 
