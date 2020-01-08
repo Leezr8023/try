@@ -2,9 +2,9 @@ import SR830
 import XPS
 import numpy as np
 from const import START_POSITION,FINISH_ONCE,\
-    SECEND_START,SECEND_FINISH,SIGNAL,data,STEP,exitFlag
+    SECEND_START,SECEND_FINISH,data,STEP,exitFlag,single_num
 
-
+global exitFlag
 def startmeasure():
     sr = SR830.SR830()
     xps = XPS.MyXPS()
@@ -17,10 +17,10 @@ def startmeasure():
         xps.measureMove(START_POSITION + STEP * i)
         postion = xps.GetPosition()
         sum = 0.0
-        for k in range(6):
+        for k in range(single_num):
             res = sr.getOut(3)
             sum = sum + res
-        data[i, 0] = sum/6
+        data[i, 0] = sum/single_num
         data[i, 1] = postion
 
     xps.measureMove(SECEND_START)
@@ -28,11 +28,11 @@ def startmeasure():
         xps.measureMove(SECEND_START + STEP * i)
         postion = xps.GetPosition()
         sum = 0.0
-        for k in range(6):
+        for k in range(single_num):
             res = sr.getOut(3)
             # print(res)
             sum = sum + res
-        data[i, 0] = sum/6
+        data[i, 0] = sum/single_num
         data[i, 1] = postion
 
     xps.measureMove(SECEND_FINISH)
@@ -40,11 +40,11 @@ def startmeasure():
         xps.measureMove(SECEND_FINISH - i * STEP)
         postion = xps.GetPosition()
         sum = 0.0
-        for k in range(6):
+        for k in range(single_num):
             res = sr.getOut(3)
             # print(res)
             sum = sum + res
-        data[i, 0] = sum/6
+        data[i, 0] = sum/single_num
         data[i, 1] = postion
 
     xps.measureMove(FINISH_ONCE)
@@ -52,11 +52,11 @@ def startmeasure():
         xps.measureMove(FINISH_ONCE - i * STEP)
         postion = xps.GetPosition()
         sum = 0.0
-        for k in range(6):
+        for k in range(single_num):
             res = sr.getOut(3)
             # print(res)
             sum = sum + res
-        data[i, 0] = sum/6
+        data[i, 0] = sum/single_num
         data[i, 1] = postion
 
     sr.close()
@@ -66,7 +66,6 @@ def startmeasure():
     title = "data/data{0}.txt".format(num)
     np.savetxt(title, data, fmt='%f', delimiter='\t')
     np.savetxt("count.txt",[num+1])
-    global exitFlag
     exitFlag[0] = 1
     print("shebei:")
     print(exitFlag[0])

@@ -1,7 +1,7 @@
 import sys
 import time
 import array
-import numpy as np
+from const import delay
 sys.path.append(r'C:\Windows\Microsoft.NET\assembly\GAC_64\Newport.XPS.CommandInterface\v4.0_1.3.0.0__9a267756cf640dcf')
 import clr
 clr.AddReference("Newport.XPS.CommandInterface")
@@ -27,7 +27,7 @@ class MyXPS:
     def measureMove(self,move):
         move_double = array.array('d', [move])
         xps.GroupMoveAbsolute('Group1', move_double, 1, '')
-        time.sleep(0.1)
+        time.sleep(delay)
     def GetPosition(self):
         result,postion,errstring = xps.GroupPositionCurrentGet('Group1','',1,'')
         if result == 0 :

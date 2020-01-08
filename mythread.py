@@ -11,7 +11,8 @@ class myThread (threading.Thread):
     def run(self):
         print ("开始线程：" + self.name)
         if self.threadID == 1:
-            Meature()
+            startmeasure()
+            # Meature()
         else:
             pass
             # MyPlot(self.name, self.counter, 5)
@@ -19,8 +20,8 @@ class myThread (threading.Thread):
         #print_time(self.name, self.counter, 5)
         print ("退出线程：" + self.name)
 
-def Meature():
-    startmeasure()
+# def Meature():
+#     startmeasure()
 
 # def MyPlot():
 
