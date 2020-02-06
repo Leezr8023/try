@@ -23,6 +23,7 @@ class subapp(QtWidgets.QMainWindow,Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.formLayout.setVerticalSpacing(10)
         self.doubleSpinBox.setDecimals(6)
         self.doubleSpinBox_2.setDecimals(6)
         self.doubleSpinBox_3.setDecimals(6)
@@ -40,9 +41,9 @@ class subapp(QtWidgets.QMainWindow,Ui_MainWindow):
         self.spinBox_3.setValue(6)
         self.doubleSpinBox_5.setValue(0.001)
         self.doubleSpinBox_6.setValue(0.0015)
-        self.spinBox.setRange(100,1000)
+        self.spinBox.setRange(100,2000)
         self.spinBox.setSingleStep(100)
-        self.spinBox.setValue(400)
+        self.spinBox.setValue(1600)
         self.pushButton.clicked.connect(self.update)
     def update(self):
         START_POSITION = self.doubleSpinBox_2.value()

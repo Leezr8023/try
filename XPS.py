@@ -23,6 +23,7 @@ class MyXPS:
             print('group initialize successful')
         else:
             print('group initialize fail')
+        xps.GroupHomeSearch('Group1','')
         xps.GroupMotionEnable('Group1', '')
     def measureMove(self,move):
         move_double = array.array('d', [move])
@@ -30,7 +31,8 @@ class MyXPS:
         time.sleep(delay)
     def GetPosition(self):
         result,postion,errstring = xps.GroupPositionCurrentGet('Group1','',1,'')
-        if result == 0 :
+        if result == 0:
+            print(postion[0])
             return postion[0]
         else:
             print(errstring)
